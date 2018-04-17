@@ -1,13 +1,13 @@
 //síðan sem læknarnir sjá í tölvunni hjá sér
 const containerlaeknir = document.getElementById("container")
-const getLaeknaPage = () => {
+const getLaeknaPage = (heilsugaesla, laeknir, bidtimi) => {
     containerlaeknir.innerHTML=`
-    <h1> Læknavakt ${/*nafn á valinni heilsugæslu} */}</h1>
+    <h1> Læknavakt ${heilsugaesla}</h1>
     <button>Næsti lausi læknir </button>
     <div>
         <img src="" id="doctorPic">
-        <p>${/*nafn læknis} */}</p>
-        <p>${/*biðtími læknis}*/}</p>
+        <p>${laeknir}</p>
+        <p>${bidtimi}</p>
         <button>Velja</button>
     </div>
     <div>
