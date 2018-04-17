@@ -13,11 +13,14 @@ const getFirstPage = () => {
       <input type="tel" id="phoneInput">
       <button id="phonebutton" onclick="signinClick()">skrá inn</button>
     </div>
+    <div id="firebaseui-auth-container"></div>
 `
 }
 
 const getAudkenniPage = () => {
     container.innerHTML+= `
+
+    
     <div>
       <p> Sláðu inn sms kóðann </p>
       <input type="number" id="input">
