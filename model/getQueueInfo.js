@@ -1,0 +1,1 @@
+//ná í upplýsingar úr queue collection-inu í firebase (returnar promise)
