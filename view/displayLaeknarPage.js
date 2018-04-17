@@ -1,4 +1,4 @@
-//síðan sem læknarnir sjá í tölvunni hjá sér
+//síðan sem læknirnir birtast á 
 const containerlaeknir = document.getElementById("container")
 const getLaeknaPage = (heilsugaesla, laeknir, bidtimi) => {
     containerlaeknir.innerHTML=`
