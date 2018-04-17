@@ -14,7 +14,7 @@ const displayDoctorPage = () => {
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          1. Nafn sjúklings
+          1. ${UserName}
           <span class="caret"></span>
         </button>
         <!-- Dropdown content / Ítarlegri upplýsingar um sjúkling -->
@@ -40,7 +40,7 @@ const displayDoctorPage = () => {
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          2. Nafn sjúklings
+          2. ${UserName}
           <span class="caret"></span>
         </button>
         <!-- Dropdown content / Ítarlegri upplýsingar um sjúkling -->
@@ -66,7 +66,7 @@ const displayDoctorPage = () => {
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          3. Nafn sjúklings
+          3. ${UserName}
           <span class="caret"></span>
         </button>
         <!-- Dropdown content / Ítarlegri upplýsingar um sjúkling -->
@@ -92,7 +92,7 @@ const displayDoctorPage = () => {
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          4. Nafn sjúklings
+          4. ${UserName}
           <span class="caret"></span>
         </button>
         <!-- Dropdown content / Ítarlegri upplýsingar um sjúkling -->
@@ -118,7 +118,7 @@ const displayDoctorPage = () => {
         <div class="panel panel-default">
         <!-- Default panel contents -->
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          5. Nafn sjúklings
+          5. ${UserName}
           <span class="caret"></span>
         </button>
         <!-- Dropdown content / Ítarlegri upplýsingar um sjúkling -->
