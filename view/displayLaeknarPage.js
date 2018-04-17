@@ -1,0 +1,1 @@
+//síðan sem læknarnir sjá í tölvunni hjá sér

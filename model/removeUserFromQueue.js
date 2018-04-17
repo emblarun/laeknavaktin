@@ -1,0 +1,1 @@
+//remove a user with certain phone number from the queue collection
