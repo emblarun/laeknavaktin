@@ -12,4 +12,5 @@ const getFirstPage = () => {
     <button id="nextPage" onclick="continueClick()">áfram</button>
 `
   signInWithFirebase();
+  continueToShowUserQuestionsPageButton();
 }

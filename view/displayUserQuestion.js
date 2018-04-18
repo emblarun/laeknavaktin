@@ -1,4 +1,10 @@
 const displayUserQuestion = ()=> {
+/**
+ *   bjó til breyturnar því þær voru að valda errors
+ */
+	const userName = "";
+	const lat = "";
+	const lng = "";
   document.getElementById("container").innerHTML=`
     <div class="header">
       <h1>${ userName }</h1>
@@ -20,7 +26,7 @@ const displayUserQuestion = ()=> {
     </div>
 
     <div class="location2">
-      <div>${ lng}</div>
+      <div>${lng}</div>
     </div>
 
     `;

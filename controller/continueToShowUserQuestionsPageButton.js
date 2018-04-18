@@ -1,7 +1,7 @@
 const continueButton = document.getElementById("nextPage")
 
 // Ef hann er loggaður inn
-if (currentUser != 0) {
+if (currentUser != null ) {
   console.log("Virkar")
   continueButton.style.display = "block";
 } else {
