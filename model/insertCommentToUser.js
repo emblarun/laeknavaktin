@@ -1,9 +1,9 @@
 //update the user collection with a Comment for the current user.
 //can be done with a subcollection or just adding an array of objects
  const insertCommentToUser = (phoneNumber, comment)=>{
-   db.collection("userProfile").where("phoneNumber", "==", phoneNumber).get().then((querySnapshot)=>{
+   db.collection("users").where("phoneNumber", "==", phoneNumber).get().then((querySnapshot)=>{
      querySnapshot.forEach((doc)=>{
-       db.collection("userProfile").doc(doc.id).update({comment:comment})
+       db.collection("users").doc(doc.id).update({comment:comment})
      })
    })
  }
