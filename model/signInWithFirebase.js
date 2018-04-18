@@ -13,13 +13,15 @@
  */
 
 // Initialize the FirebaseUI Widget using Firebase.
-const currentUser = 0;
+let currentUser;
 
 const authenticationDiv = document.getElementById("firebaseui-auth-container");
+
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-const firebaseUiOptions = {signInOptions: [
-	{	//options for phone
+const firebaseUiOptions = {
 		signInSuccessUrl: 'index.html', // landing page for succesful login
+		signInOptions: [
+	{	//options for phone
 		provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
 		recaptchaParameters: {
 			type: 'image', // 'audio'
@@ -38,32 +40,17 @@ const firebaseUiOptions = {signInOptions: [
 
 
 const signInWithFirebase = function() {
-
 	// The start method will wait until the DOM is loaded.
 	ui.start('#firebaseui-auth-container', firebaseUiOptions);
 
 	firebase.auth().onAuthStateChanged(function(user) {
-	  if (user != null) {
+	  if (user) {
 		// User is signed in.
-
-		//gets the IdToken info when authenticated
-		user.getIdToken().then(function(accessToken) {
-			console.log(JSON.stringify(accessToken,null,4));
-
-/* 			db.collection("users").doc(user.uid).set({ //Creates a user document with UID
-				'phone': user.phoneNumber,
-
-
-			}).then(()=>{
-			  console.log("// currentUser updated!");
-			}).catch(()=>{
-			  console.log("error writing user profile: ", error);
-			});		 */
-		});
+		insertUserToDB(user);
+		console.log('you are authenticated')
 	  } else {
 		// User is signed out.
 		document.getElementById('sign-in').textContent = 'Sign in';
-		console.log("not logged in");
 	  }
 	}, function(error) {
 	  console.log(error);
