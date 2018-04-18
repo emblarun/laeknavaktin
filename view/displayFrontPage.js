@@ -1,4 +1,5 @@
 //forsíðan (þar sem maður loggar sig inn)
+
 const container = document.getElementById("container")
 const getFirstPage = () => {
     container.innerHTML+= `
@@ -13,3 +14,4 @@ const getFirstPage = () => {
 `
   signInWithFirebase();
 }
+

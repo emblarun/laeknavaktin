@@ -3,7 +3,7 @@ const containerlaeknir = document.getElementById("container")
 const getLaeknaPage = (heilsugaesla, laeknir, bidtimi) => {
     containerlaeknir.innerHTML=`
     <h1> Læknavakt ${heilsugaesla}</h1>
-    <button>Næsti lausi læknir </button>
+    <button id="nextup">Næsti lausi læknir </button>
     <div>
         <img src="" id="doctorPic">
         <p>${laeknir}</p>
