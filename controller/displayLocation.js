@@ -18,33 +18,13 @@ const showPosition(position){
     displayHeilsugaeslur.innerHTML = position.coords.latitude + position.coords.longitude;
 }
 
-var minDist = 1000;
-var minDistIndex = 0;
 
-getHeilsugaeslur().then((heilsugaeslur)=>{
-    // því lægri tala sem distance er það birtist eftst hjá notandanum því notandninn er næst þeirri heilsugæslu
-    heilsugaeslur.forEach((heilsugaesla, i)=>{
-        const distance = getDistance(heilsugaesla.latitude, heilsugaesla.longitude)
-        if (distance < minDist){
-            minDist = distance;
-            minDistIndex = i;
-        }
-    })
-    document.getElementById("showHeilsugaeslur").innerHTML= `
-            ${heilsugaesla[minDistIndex].nafn}
-            ${heilsugaesla[minDistIndex].opnunartimi}
-            ${heilsugaesla[minDistIndex].imgURL}
-            `
-})
+// bera saman hnit notandans og hnit heilsugæslanna 
 
-const getDistance= (hlat, hlong ) => {
-    // bera saman hnit notandans og hnit heilsugæslanna 
-    var la = position.coord.latitude - hlat;
-    var lo = position.coord.longitude - hlong;
+const displayHnit = db.collection("heilsugaeslur").doc(heilsugaeslur).field(hnit[0]);
 
-    //niðurstöður um distance 
-    return Math.sqrt(Math.pow(la, 2) + Math.pow(lo, 2));
-}
+var positionUser = showPosition.toRadians()
+var positionHeilsugaesla = displayHnit.toRadians(), Δλ = (lon2-lon1).toRadians(), R = 6371e3; // gives d in metres
+var distance = Math.acos( Math.sin(positionUser)*Math.sin(positionHeilsugaesla) + Math.cos(positionUser)*Math.cos(positionHeilsugaesla) * Math.cos(Δλ) ) * R;
 
-
-
+// því lægri tala sem distance er það birtist eftst hjá notandanum því notandninn er næst þeirri heilsugæslu

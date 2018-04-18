@@ -1,18 +1,16 @@
 //Get geolocation coordinates
 
-const getHeilsugaeslur = () => {
+const getHeilsugaeslur = (heilsugaeslaId) => {
     var docRef = db.collection("heilsugaeslur")
     return new Promise((resolve) => {
         docRef.get().then((querySnapshot) => {
-            const heilsugaeslur = []
             querySnapshot.forEach(function(doc){
                 if (doc.exists) {
-                    heilsugaeslur.push(doc.data());
+                    resolve(doc.data());
                 } else {
-                    
+                    resolve(null);
                 }
             })
-            resolve(heilsugaeslur)
         }).catch((err) => {
             console.error(err);
             resolve(null);
