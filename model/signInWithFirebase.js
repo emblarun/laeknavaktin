@@ -13,7 +13,7 @@
  */
 
 // Initialize the FirebaseUI Widget using Firebase.
-const currentUser = firebase.auth().currentUser;
+const currentUser = 0;
 
 const authenticationDiv = document.getElementById("firebaseui-auth-container");
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -45,7 +45,7 @@ const signInWithFirebase = function() {
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user != null) {
 		// User is signed in.
-	
+
 		//gets the IdToken info when authenticated
 		user.getIdToken().then(function(accessToken) {
 			console.log(JSON.stringify(accessToken,null,4));

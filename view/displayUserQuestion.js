@@ -1,4 +1,4 @@
-const displayUserQuestion = (userName, lat, lng)=> {
+const displayUserQuestion = ()=> {
   document.getElementById("container").innerHTML=`
     <div class="header">
       <h1>${ userName }</h1>
