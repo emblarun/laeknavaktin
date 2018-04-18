@@ -36,7 +36,6 @@ const firebaseUiOptions = {signInOptions: [
 	}
 ]};
 
-
 const signInWithFirebase = function() {
 		
 	// The start method will wait until the DOM is loaded.
@@ -45,7 +44,6 @@ const signInWithFirebase = function() {
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user != null) {
 		// User is signed in.
-		authenticationDiv.style.visibility = "hidden";
 		//gets the IdToken info when authenticated
 		user.getIdToken().then(function(accessToken) {
 			console.log(JSON.stringify(accessToken,null,4));
