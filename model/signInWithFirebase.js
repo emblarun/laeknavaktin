@@ -1,7 +1,5 @@
 //firebase phone signup and call insertUserToDB
 
-//firebase phone signup and call insertUserToDB
-
 /**
  * https://github.com/firebase/firebaseui-web#installation 
  *
@@ -15,39 +13,44 @@
  */
 
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+const currentUser = firebase.auth().currentUser;
 
-initApp = function() {
+const authenticationDiv = document.getElementById("firebaseui-auth-container");
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+const firebaseUiOptions = {signInOptions: [
+	{	//options for phone
+		signInSuccessUrl: 'index.html', // landing page for succesful login
+		provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+		recaptchaParameters: {
+			type: 'image', // 'audio'
+			size: 'normal', // 'invisible' or 'compact'
+			badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+		},
+		defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
+		// For prefilling the national number, set defaultNationNumber.
+		// This will only be observed if only phone Auth provider is used since
+		// for multiple providers, the NASCAR screen will always render first
+		// with a 'sign in with phone number' button.
+
+		tosUrl: '<your-tos-url>',//link to the TOS 
+	}
+]};
+
+
+const signInWithFirebase = function() {
 		
 	// The start method will wait until the DOM is loaded.
-	ui.start('#firebaseui-auth-container', {
-	  signInOptions: [
-		{
-			signInSuccessUrl: 'index.html', // landing page for succesful login
-			provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-			recaptchaParameters: {
-				type: 'image', // 'audio'
-				size: 'normal', // 'invisible' or 'compact'
-				badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
-			},
-			defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
-			// For prefilling the national number, set defaultNationNumber.
-			// This will only be observed if only phone Auth provider is used since
-			// for multiple providers, the NASCAR screen will always render first
-			// with a 'sign in with phone number' button.
-			
-			tosUrl: '<your-tos-url>',//link to the TOS 
-		}
-	  ]
-	}); 
+	ui.start('#firebaseui-auth-container', firebaseUiOptions); 
 		
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user != null) {
 		// User is signed in.
-		
+		authenticationDiv.style.visibility = "hidden";
 		//gets the IdToken info when authenticated
 		user.getIdToken().then(function(accessToken) {
-			db.collection("users").doc(user.uid).set({ //Creates a user document with UID 
+			console.log(JSON.stringify(accessToken,null,4));
+			
+/* 			db.collection("users").doc(user.uid).set({ //Creates a user document with UID 
 				'phone': user.phoneNumber,
 				
 			
@@ -55,17 +58,14 @@ initApp = function() {
 			  console.log("// currentUser updated!");
 			}).catch(()=>{
 			  console.log("error writing user profile: ", error);
-			});		  
+			});		 */  
 		});
 	  } else {
 		// User is signed out.
 		document.getElementById('sign-in').textContent = 'Sign in';
+		console.log("not logged in");
 	  }
 	}, function(error) {
 	  console.log(error);
 	});
 };
-
-window.addEventListener('load', function() {
-initApp()
-});
