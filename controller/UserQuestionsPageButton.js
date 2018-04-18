@@ -1,4 +1,4 @@
-const continueButton = document.getElementById("nextPage")
+const continueButton = document.getElementById("nextPage");
 
 // Ef hann er loggaður inn
 if (currentUser != null ) {
@@ -9,6 +9,3 @@ if (currentUser != null ) {
   continueButton.style.display = "hidden";
 }
 
-const continueClick = ()=>{
-  displayUserQuestion()
-}
