@@ -13,7 +13,7 @@
  */
 
 // Initialize the FirebaseUI Widget using Firebase.
-const currentUser = firebase.auth().currentUser;
+let currentUser = 0
 
 const authenticationDiv = document.getElementById("firebaseui-auth-container");
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -43,21 +43,10 @@ const signInWithFirebase = function() {
 		
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user != null) {
+			insertUserToDB(user);
+			currentUser=user;
 		// User is signed in.
 		//gets the IdToken info when authenticated
-		user.getIdToken().then(function(accessToken) {
-			console.log(JSON.stringify(accessToken,null,4));
-			
-/* 			db.collection("users").doc(user.uid).set({ //Creates a user document with UID 
-				'phone': user.phoneNumber,
-				
-			
-			}).then(()=>{
-			  console.log("// currentUser updated!");
-			}).catch(()=>{
-			  console.log("error writing user profile: ", error);
-			});		 */  
-		});
 	  } else {
 		// User is signed out.
 		document.getElementById('sign-in').textContent = 'Sign in';
