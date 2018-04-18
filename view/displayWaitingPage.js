@@ -1,17 +1,17 @@
 //Here comes the waiting list page (page 4) done by Eeva :)
-const displayWaitingPage = (waitingTime, waitingNumber) => {
+const displayWaitingPage = (numberInLine, queueId) => {
     document.getElementById("container").innerHTML= `
     <div class="container">
       <div class="row">
         <div class="col-12">
           <h1>Þú átt tíma eftir:</h1>
-          <div><h1>${timeConvert(waitingTime)}</h1></div>
+          <div><h1>${timeConvert((numberInLine - 1) * 15)}</h1></div>
         </div>
         <div class="col-12">
-          <p>Það eru ${waitingNumber} á undan þér.</p>
+          <p>Það eru ${numberInLine - 1} á undan þér.</p>
         </div>
         <div class="col-12">
-          <p>Fýlltu fyrir:</p>
+          <p>Flýttu fyrir:</p>
           <input id="reasonForVisit" type="text" placeholder="Hvað bjátar á..."></input>
         </div>
         <div class="col-12-mt-5">
@@ -20,7 +20,9 @@ const displayWaitingPage = (waitingTime, waitingNumber) => {
         </div>
       </div><!--closes row-->
     </div><!--closes container-->
-    `
+  `;
+
+  onUserCommentChange(queueId);
 }
 
 
