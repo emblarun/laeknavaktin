@@ -47,7 +47,7 @@ const signInWithFirebase = function() {
 	  if (user) {
 		// User is signed in.
 		insertUserToDB(user);
-		
+		console.log('you are authenticated')
 	  } else {
 		// User is signed out.
 		document.getElementById('sign-in').textContent = 'Sign in';
