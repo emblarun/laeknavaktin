@@ -17,7 +17,7 @@
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-const signInWithFirebase = function() {
+initApp = function() {
 		
 	// The start method will wait until the DOM is loaded.
 	ui.start('#firebaseui-auth-container', {
@@ -66,4 +66,6 @@ const signInWithFirebase = function() {
 	});
 };
 
-
+window.addEventListener('load', function() {
+initApp()
+});
