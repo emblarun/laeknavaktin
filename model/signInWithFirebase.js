@@ -15,44 +15,42 @@
 // Initialize the FirebaseUI Widget using Firebase.
 let currentUser;
 
-const authenticationDiv = document.getElementById("firebaseui-auth-container");
-
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 const firebaseUiOptions = {
 		signInSuccessUrl: 'index.html', // landing page for succesful login
 		signInOptions: [
-	{	//options for phone
-		provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-		recaptchaParameters: {
-			type: 'image', // 'audio'
-			size: 'normal', // 'invisible' or 'compact'
-			badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
-		},
-		defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
-		// For prefilling the national number, set defaultNationNumber.
-		// This will only be observed if only phone Auth provider is used since
-		// for multiple providers, the NASCAR screen will always render first
-		// with a 'sign in with phone number' button.
+			{	//options for phone
+				provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+				recaptchaParameters: {
+					type: 'image', // 'audio'
+					size: 'invisible', // 'invisible', 'normal' or 'compact'
+					badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+				},
+				defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
+				// For prefilling the national number, set defaultNationNumber.
+				// This will only be observed if only phone Auth provider is used since
+				// for multiple providers, the NASCAR screen will always render first
+				// with a 'sign in with phone number' button.
 
+			}
+		],
 		tosUrl: '<your-tos-url>',//link to the TOS
-	}
-]};
+	};
 
 
 const signInWithFirebase = function() {
-	// The start method will wait until the DOM is loaded.
-	ui.start('#firebaseui-auth-container', firebaseUiOptions);
-
+	const authenticationDiv = document.getElementById("firebaseui-auth-container");
+	
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 		// User is signed in.
 		insertUserToDB(user);
-		console.log('you are authenticated')
 	  } else {
-		// User is signed out.
-		document.getElementById('sign-in').textContent = 'Sign in';
+		
+		// The start method will wait until the DOM is loaded.
+		ui.start('#firebaseui-auth-container', firebaseUiOptions);
 	  }
 	}, function(error) {
-	  console.log(error);
+	  console.log("error with authenticator: ", error);
 	});
 };
