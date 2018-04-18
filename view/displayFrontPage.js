@@ -22,7 +22,7 @@ const getAudkenniPage = () => {
       <p> Sláðu inn sms kóðann </p>
       <input type="number" id="input">
       <button id="sendAgain">Senda aftur</button>
-      <button id="afram">Áfram</button>
+      <button id="nextPage" onclick="continueClick()">Áfram</button>
     </div>
 `
 }
