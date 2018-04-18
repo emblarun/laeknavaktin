@@ -18,13 +18,29 @@ const showPosition(position){
     displayHeilsugaeslur.innerHTML = position.coords.latitude + position.coords.longitude;
 }
 
+getHeilsugaeslur().then((heilsugaesla)=>{
+    heilsugaesla.latitude + heilsugaesla.longitude;
+})
 
-// bera saman hnit notandans og hnit heilsugæslanna 
+const getDistance= () => {
+    // bera saman hnit notandans og hnit heilsugæslanna 
+    var la = position.coord.latitude - heilsugaesla.latitude;
+    var lo = position.coord.longitude - heilsugaesla.longitude;
 
-const displayHnit = db.collection("heilsugaeslur").doc(heilsugaeslur).field(hnit[0]);
+    //niðurstöður um distance 
+    return Math.sqrt(Math.pow(la, 2) + Math.pow(lo, 2));
+}
 
-var positionUser = showPosition.toRadians()
-var positionHeilsugaesla = displayHnit.toRadians(), Δλ = (lon2-lon1).toRadians(), R = 6371e3; // gives d in metres
-var distance = Math.acos( Math.sin(positionUser)*Math.sin(positionHeilsugaesla) + Math.cos(positionUser)*Math.cos(positionHeilsugaesla) * Math.cos(Δλ) ) * R;
+var minDist = 1000;
+var minDistIndex = 0;
 
 // því lægri tala sem distance er það birtist eftst hjá notandanum því notandninn er næst þeirri heilsugæslu
+
+for (i = 0; i < heilsugaeslur.length; i++ ){
+    // það sem gefur okkur minnsta distance birtist efst. 
+    if (getDistance =  ){
+        document.getElementById("showHeilsugaeslur").innerHTML= `
+        
+        `
+    }
+}
