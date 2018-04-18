@@ -18,29 +18,33 @@ const showPosition(position){
     displayHeilsugaeslur.innerHTML = position.coords.latitude + position.coords.longitude;
 }
 
-getHeilsugaeslur().then((heilsugaesla)=>{
-    heilsugaesla.latitude + heilsugaesla.longitude;
+var minDist = 1000;
+var minDistIndex = 0;
+
+getHeilsugaeslur().then((heilsugaeslur)=>{
+    // því lægri tala sem distance er það birtist eftst hjá notandanum því notandninn er næst þeirri heilsugæslu
+    heilsugaeslur.forEach((heilsugaesla, i)=>{
+        const distance = getDistance(heilsugaesla.latitude, heilsugaesla.longitude)
+        if (distance < minDist){
+            minDist = distance;
+            minDistIndex = i;
+        }
+    })
+    document.getElementById("showHeilsugaeslur").innerHTML= `
+            ${heilsugaesla[minDistIndex].nafn}
+            ${heilsugaesla[minDistIndex].opnunartimi}
+            ${heilsugaesla[minDistIndex].imgURL}
+            `
 })
 
-const getDistance= () => {
+const getDistance= (hlat, hlong ) => {
     // bera saman hnit notandans og hnit heilsugæslanna 
-    var la = position.coord.latitude - heilsugaesla.latitude;
-    var lo = position.coord.longitude - heilsugaesla.longitude;
+    var la = position.coord.latitude - hlat;
+    var lo = position.coord.longitude - hlong;
 
     //niðurstöður um distance 
     return Math.sqrt(Math.pow(la, 2) + Math.pow(lo, 2));
 }
 
-var minDist = 1000;
-var minDistIndex = 0;
 
-// því lægri tala sem distance er það birtist eftst hjá notandanum því notandninn er næst þeirri heilsugæslu
 
-for (i = 0; i < heilsugaeslur.length; i++ ){
-    // það sem gefur okkur minnsta distance birtist efst. 
-    if (getDistance =  ){
-        document.getElementById("showHeilsugaeslur").innerHTML= `
-        
-        `
-    }
-}
