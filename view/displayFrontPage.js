@@ -11,4 +11,5 @@ const getFirstPage = () => {
     <div id="firebaseui-auth-container"></div>
     <button id="nextPage" style="display:hidden" onclick="continueClick()">áfram</button>
 `
+  signInWithFirebase();
 }
