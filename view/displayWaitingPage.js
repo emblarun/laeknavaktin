@@ -1,6 +1,7 @@
 //Here comes the waiting list page (page 4) done by Eeva :)
 getQueue().then((queue)=>{
   waitingNumber = queue.length;
+  waitingTime = queue.length*10;
 })
 const displayWaitingPage = (waitingTime, waitingNumber) => {
     document.getElementById("container").innerHTML= `
