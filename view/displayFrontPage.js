@@ -1,5 +1,4 @@
 //forsíðan (þar sem maður loggar sig inn)
-
 const container = document.getElementById("container")
 const getFirstPage = () => {
     container.innerHTML+= `
@@ -10,8 +9,7 @@ const getFirstPage = () => {
         <h3> Hringdu á 112 ef um alvarleg veikindi eru að ræða </h3>
     </div>
     <div id="firebaseui-auth-container"></div>
-    <button id="nextPage" style="display:hidden" onclick="continueClick()">áfram</button>
+    <button id="nextPage" onclick="continueClick()">áfram</button>
 `
   signInWithFirebase();
 }
-
