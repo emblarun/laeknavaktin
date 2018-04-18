@@ -37,20 +37,21 @@ const firebaseUiOptions = {signInOptions: [
 ]};
 
 const signInWithFirebase = function() {
-		
+
+	const firebaseUiDiv = document.getElementById("firebaseui-auth-container");
 	// The start method will wait until the DOM is loaded.
 	ui.start('#firebaseui-auth-container', firebaseUiOptions); 
 		
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user != null) {
-			insertUserToDB(user);
-			currentUser=user;
 		// User is signed in.
-		//gets the IdToken info when authenticated
+		insertUserToDB(user);
+		currentUser=user;
+		firebaseUiDiv.style.display = "none";
 	  } else {
 		// User is signed out.
 		document.getElementById('sign-in').textContent = 'Sign in';
-		console.log("not logged in");
+		firebaseUiDiv.style.display = "block";
 	  }
 	}, function(error) {
 	  console.log(error);
