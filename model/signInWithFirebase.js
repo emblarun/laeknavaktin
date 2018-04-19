@@ -13,59 +13,44 @@
  */
 
 // Initialize the FirebaseUI Widget using Firebase.
-const currentUser = 0;
+let currentUser;
 
-const authenticationDiv = document.getElementById("firebaseui-auth-container");
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-const firebaseUiOptions = {signInOptions: [
-	{	//options for phone
+const firebaseUiOptions = {
 		signInSuccessUrl: 'index.html', // landing page for succesful login
-		provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-		recaptchaParameters: {
-			type: 'image', // 'audio'
-			size: 'normal', // 'invisible' or 'compact'
-			badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
-		},
-		defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
-		// For prefilling the national number, set defaultNationNumber.
-		// This will only be observed if only phone Auth provider is used since
-		// for multiple providers, the NASCAR screen will always render first
-		// with a 'sign in with phone number' button.
+		signInOptions: [
+			{	//options for phone
+				provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+				recaptchaParameters: {
+					type: 'image', // 'audio'
+					size: 'invisible', // 'invisible', 'normal' or 'compact'
+					badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+				},
+				defaultCountry: 'IS', // Set default country to the United Kingdom (+44).
+				// For prefilling the national number, set defaultNationNumber.
+				// This will only be observed if only phone Auth provider is used since
+				// for multiple providers, the NASCAR screen will always render first
+				// with a 'sign in with phone number' button.
 
+			}
+		],
 		tosUrl: '<your-tos-url>',//link to the TOS
-	}
-]};
+	};
 
 
 const signInWithFirebase = function() {
-
-	// The start method will wait until the DOM is loaded.
-	ui.start('#firebaseui-auth-container', firebaseUiOptions);
-
+	const authenticationDiv = document.getElementById("firebaseui-auth-container");
+	
 	firebase.auth().onAuthStateChanged(function(user) {
-	  if (user != null) {
+	  if (user) {
 		// User is signed in.
-
-		//gets the IdToken info when authenticated
-		user.getIdToken().then(function(accessToken) {
-			console.log(JSON.stringify(accessToken,null,4));
-
-/* 			db.collection("users").doc(user.uid).set({ //Creates a user document with UID
-				'phone': user.phoneNumber,
-
-
-			}).then(()=>{
-			  console.log("// currentUser updated!");
-			}).catch(()=>{
-			  console.log("error writing user profile: ", error);
-			});		 */
-		});
+		insertUserToDB(user);
 	  } else {
-		// User is signed out.
-		document.getElementById('sign-in').textContent = 'Sign in';
-		console.log("not logged in");
+		
+		// The start method will wait until the DOM is loaded.
+		ui.start('#firebaseui-auth-container', firebaseUiOptions);
 	  }
 	}, function(error) {
-	  console.log(error);
+	  console.log("error with authenticator: ", error);
 	});
 };

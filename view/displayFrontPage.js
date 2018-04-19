@@ -4,12 +4,14 @@ const getFirstPage = () => {
     container.innerHTML+= `
     <div>
         <img src="img/logo.png">
-        <h2> Velkomin/n á </h2>
-        <h1> Læknavaktina </h12>
-        <h3> Hringdu á 112 ef um alvarleg veikindi eru að ræða </h3>
+        <h2> Velkomin/n á<br>
+		<span>Læknavaktina</span></h2>
+        <p> Hringdu í <strong>112</strong> ef um alvarleg veikindi eru að ræða </p>
     </div>
-    <div id="firebaseui-auth-container"></div>
-    <button id="nextPage" onclick="continueClick()">áfram</button>
+	<div id="firebaseui-auth-container"></div>
+    <button id="nextPage" onclick="displayUserQuestion()">áfram</button>
 `
   signInWithFirebase();
+  ShowUserQuestionsPageButton();
 }
+
