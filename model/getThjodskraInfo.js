@@ -12,8 +12,8 @@ const getThjodskraInfo = (kennitala)=>{
 	const apiURL = "https://api.ja.is/skra/v1/people/" + kennitala;
 	const accessHeader = {
 		credentials: 'include', // include, same-origin, *omit
-		Headers: {
-		  'Authorization': apiKey,
+		headers: {
+		  'Authorization' : apiKey,
 		  'Content-Type': 'application/json'
 		},
 		method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -22,10 +22,18 @@ const getThjodskraInfo = (kennitala)=>{
 	
 	fetch( apiURL, accessHeader ).then((results)=>{
 		return results
-	}).then((data)=>{
-		console.log("Þjóðskrá results: ", data);
-	}).catch((error)=>{
-		console.log("error while fetching from the Já.is API: ", error);
-	});
+		}).then((thjodskra)=>{
+			console.log("Þjóðskrá results: ", thjodskra);
+	/* 		insertUserToDB({
+				'kennitala' : thjodskra.kennitala,
+				'name' : thjodskra.name,
+				'gender' : thjodskra.gender,
+				'dob' : thjodskra.date_of_birth,
+				'age' : thjodskra.age,
+				'marriage ' : thjodskra.marital_status.description.is,
+				'postCode' : thjodskra.permanent_address.postal_code 
+			}); */
+		}).catch((error)=>{
+			console.log("error while fetching from the Já.is API: ", error);
+		});
 };
-
