@@ -1,4 +1,8 @@
 //Here comes the waiting list page (page 4) done by Eeva :)
+getQueue().then((queue)=>{
+  waitingNumber = queue.length;
+  waitingTime = queue.length*10;
+})
 const displayWaitingPage = (waitingTime, waitingNumber) => {
     document.getElementById("container").innerHTML= `
     <div class="container">
@@ -7,20 +11,38 @@ const displayWaitingPage = (waitingTime, waitingNumber) => {
           <h1>Þú átt tíma eftir:</h1>
           <div><h1>${timeConvert(waitingTime)}</h1></div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <p>Það eru ${waitingNumber} á undan þér.</p>
         </div>
+      </div>
+      <div class=row>
         <div class="col-12">
-          <p>Fýlltu fyrir:</p>
+          <p>Flýttu fyrir:</p>
           <input id="reasonForVisit" type="text" placeholder="Hvað bjátar á..."></input>
         </div>
+      </div>
+      <br>
+      <div class="row">
         <div class="col-12-mt-5">
+        <!--Button to send comments to Firebase-->
+          <button id="sendComments">Senda</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-12-mt-5">
+        <!--Button to take patient out of the queue-->
           <button id="cancelVisit" type="button" class="btn btn-primary">Fara úr röðinni
           </button>
         </div>
+      </div>
       </div><!--closes row-->
     </div><!--closes container-->
     `
+    //Eventlistener for the send button!
+    document.getElementById("sendComments").addEventListener('click', insertCommentOnClick);
 }
 
 
