@@ -1,11 +1,15 @@
+/**
+ * Þetta model bætir upplýsingum við users (currentUser) á database
+ * addToUser = object
+*/
 // insert userName and phoneNumber
-const insertUserToDB = (user)=>{
+const insertUserToDB = (addToUser)=>{
+	user = currentUser;
 	db.collection("users").doc(user.phoneNumber).set({ 
-		'phone': user.phoneNumber,
+		addToUser
 	}).then(()=>{
-	  currentUser = user;
-	  console.log("// currentUser updated!");
-	}).catch(()=>{
+	
+	}).catch((error)=>{
 	  console.log("error writing user profile: ", error);
 	});	
 }
